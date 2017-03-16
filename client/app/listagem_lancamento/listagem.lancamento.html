@@ -1,0 +1,40 @@
+
+<div class="conteiner" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    Dezembro / 2016
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Valor R$</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor = "let lancamento of lancamentos">
+                                <td>{{lancamento.data}}</td>
+                                <td>{{lancamento.descricao}}</td>
+                                <td>{{lancamento.valor}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+</div>    
