@@ -1,3 +1,3 @@
 # Finan
 
-Projeto de controler financeiro feito em angulas e spring rest.
+Projeto de controle financeiro feito em angular e spring rest.
