@@ -10,6 +10,10 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component");
 var listagem_lancamento_component_1 = require("./listagem_lancamento/listagem.lancamento.component");
+var cadastro_lancamentos_component_1 = require("./cadastro.lancamentos/cadastro.lancamentos.component");
+var app_routes_1 = require("./app.routes");
+var lancamentos_pipe_1 = require("./listagem_lancamento/lancamentos.pipe");
+var http_1 = require("@angular/http");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -17,8 +21,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent, listagem_lancamento_component_1.ListagemLancamentoComponent],
+        imports: [platform_browser_1.BrowserModule, app_routes_1.routing, http_1.HttpModule],
+        declarations: [app_component_1.AppComponent, listagem_lancamento_component_1.ListagemLancamentoComponent, cadastro_lancamentos_component_1.CadastroLancamentoCompoent, lancamentos_pipe_1.FiltroPorDescricao],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

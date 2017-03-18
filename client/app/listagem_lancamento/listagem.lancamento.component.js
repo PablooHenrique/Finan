@@ -10,9 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var ListagemLancamentoComponent = (function () {
-    function ListagemLancamentoComponent() {
+    function ListagemLancamentoComponent(http) {
         this.lancamentos = [];
+        var stream = http.get('http://localhost:8080/lancamentos');
+        stream.subscribe(function (res) { return console.log(res.json()); });
         this.lancamentos = [{ data: '14/03/2017', descricao: 'Futebol', valor: 10.00 }, { data: '15/03/2017', descricao: 'Caneca', valor: 20.00 }];
     }
     return ListagemLancamentoComponent;
@@ -23,7 +26,7 @@ ListagemLancamentoComponent = __decorate([
         selector: 'ListagemLancamento',
         templateUrl: './listagem.lancamento.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [http_1.Http])
 ], ListagemLancamentoComponent);
 exports.ListagemLancamentoComponent = ListagemLancamentoComponent;
 //# sourceMappingURL=listagem.lancamento.component.js.map
