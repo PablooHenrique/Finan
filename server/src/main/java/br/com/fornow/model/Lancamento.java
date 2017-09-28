@@ -2,8 +2,15 @@ package br.com.fornow.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Lancamento {
 	
+	@Id
+	@GeneratedValue
 	private long id;
 	private Double valor;
 	private String descricao;

@@ -19,9 +19,6 @@
     <!--Persistencia com o banco de dados-->
     <property name="javax.persistence.jdbc.driver">org.h2.Driver</property>
     
-    <mapping class="br.ufg.inf.quintacalendario.model.Evento"/>
-    <mapping class="br.ufg.inf.quintacalendario.model.Regional"/>
-    <mapping class="br.ufg.inf.quintacalendario.model.Categoria"/>
-    <mapping class="br.ufg.inf.quintacalendario.model.Instituto"/>
+    <mapping class="br.com.fornow.model.Lancamento"/>
   </session-factory>
 </hibernate-configuration>

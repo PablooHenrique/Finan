@@ -14,8 +14,8 @@ public class LancamentoService {
 
 	public List<Lancamento> listarTodosLancamentos() {
 		System.out.println("Listando...");
-		new LancamentoRepository().listar();
-		return null;
+		List<Lancamento> lancamentos = new LancamentoRepository().listar();
+		return lancamentos;
 	}
 
 	public Lancamento atualizarLancamento(long id, Lancamento lancamento) {
