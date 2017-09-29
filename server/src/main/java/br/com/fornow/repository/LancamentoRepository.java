@@ -49,4 +49,12 @@ public class LancamentoRepository {
 		transaction.commit();
 		session.close();
 	}
+
+	public Lancamento pesquisarPorId(long id) {
+		SessionFactory sessionFactory = Repository.getInstance().getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Lancamento find = session.find(Lancamento.class, id);
+		session.close();
+		return find;
+	}
 }

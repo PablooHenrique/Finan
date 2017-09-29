@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import br.com.fornow.model.enums.TipoLancamento;
+
 @Entity
 public class Lancamento {
 	
@@ -15,6 +17,7 @@ public class Lancamento {
 	private Double valor;
 	private String descricao;
 	private int mesReferencia;
+	private TipoLancamento tipoLancamento;
 	private LocalDate dataLancamento;
 	private LocalDate dataDePagamento;
 	
@@ -53,5 +56,11 @@ public class Lancamento {
 	}
 	public void setDataDePagamento(LocalDate dataDePagamento) {
 		this.dataDePagamento = dataDePagamento;
+	}
+	public TipoLancamento getTipoLancamento() {
+		return tipoLancamento;
+	}
+	public void setTipoLancamento(TipoLancamento tipoLancamento) {
+		this.tipoLancamento = tipoLancamento;
 	}
 }
