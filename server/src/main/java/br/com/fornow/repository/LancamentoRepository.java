@@ -50,7 +50,7 @@ public class LancamentoRepository {
 		session.close();
 	}
 
-	public Lancamento pesquisarPorId(long id) {
+	public Lancamento procurarLancamentoPorId(long id) {
 		SessionFactory sessionFactory = Repository.getInstance().getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Lancamento find = session.find(Lancamento.class, id);
@@ -58,3 +58,29 @@ public class LancamentoRepository {
 		return find;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

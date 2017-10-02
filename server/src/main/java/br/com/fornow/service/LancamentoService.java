@@ -18,7 +18,13 @@ public class LancamentoService {
 		return lancamentos;
 	}
 
-	public Lancamento atualizarLancamento(long id, Lancamento lancamento) {
+	public Lancamento atualizarLancamento(long id, Lancamento lancamentoDto) {
+		Lancamento lancamento = new LancamentoRepository().procurarLancamentoPorId(id);
+		lancamento.setDescricao(lancamentoDto.getDescricao());
+		lancamento.setMesReferencia(lancamentoDto.getMesReferencia());
+		lancamento.setTipoLancamento(lancamentoDto.getTipoLancamento());
+		lancamentoDto.setValor(lancamentoDto.getValor());
+		
 		new LancamentoRepository().atualizarLancamento(lancamento);
 		System.out.println("Atualizado");
 		return null;

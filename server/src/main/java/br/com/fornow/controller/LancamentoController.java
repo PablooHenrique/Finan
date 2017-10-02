@@ -36,15 +36,41 @@ public class LancamentoController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<?> atualizaLancamento(@PathVariable("id") long id, @RequestBody Lancamento lancamento){
 		lancamento = new LancamentoService().atualizarLancamento(id, lancamento);
 		return new ResponseEntity<Lancamento>(lancamento, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE)
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletaLancamento(@PathVariable("id") long id){
 		new LancamentoService().deletarLancamento(id);
 		return new ResponseEntity<Lancamento>(HttpStatus.NO_CONTENT);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
