@@ -7,8 +7,8 @@ public class ViewPrincipal {
 	public void run() {
 		Scanner scanner = new Scanner(System.in);
 		criarTelaInicial();
-		int opcao = lerEntradaInteira(scanner);
-		carregarOpcoes(opcao);
+//		int opcao = lerEntradaInteira(scanner);
+//		carregarOpcoes(opcao);
 	}
 	
 	private void criarTelaInicial(){
