@@ -2193,6 +2193,12 @@ Copyright (c) 2015 Daniel Eden
   font-size: 3em;
   min-height: 64px;
 }
+
+.card .icon-medium {
+  font-size: 2em;
+  min-height: 30px;
+}
+
 .card .numbers {
   font-size: 2em;
   text-align: right;

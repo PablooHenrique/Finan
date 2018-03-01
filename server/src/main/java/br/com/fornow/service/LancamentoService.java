@@ -22,7 +22,7 @@ public class LancamentoService {
 		Lancamento lancamento = new LancamentoRepository().procurarLancamentoPorId(id);
 		lancamento.setDescricao(lancamentoDto.getDescricao());
 		lancamento.setMesReferencia(lancamentoDto.getMesReferencia());
-		lancamento.setTipoLancamento(lancamentoDto.getTipoLancamento());
+		lancamento.setTipo(lancamentoDto.getTipo());
 		lancamentoDto.setValor(lancamentoDto.getValor());
 		
 		new LancamentoRepository().atualizarLancamento(lancamento);
@@ -33,5 +33,11 @@ public class LancamentoService {
 	public void deletarLancamento(long id) {
 		new LancamentoRepository().deletar(id);
 		System.out.println("Deletado");
+	}
+
+	public Lancamento pesquisarPorId(long id) {
+		Lancamento lancamento = new LancamentoRepository().pesquisarPorId(id);
+		System.out.println("Pesquisou por id");
+		return lancamento;
 	}
 }

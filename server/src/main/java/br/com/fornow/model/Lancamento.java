@@ -17,7 +17,8 @@ public class Lancamento {
 	private Double valor;
 	private String descricao;
 	private int mesReferencia;
-	private TipoLancamento tipoLancamento;
+	private TipoLancamento tipo;
+	private StatusLancamento status;
 	private LocalDate dataLancamento;
 	private LocalDate dataDePagamento;
 	
@@ -57,10 +58,16 @@ public class Lancamento {
 	public void setDataDePagamento(LocalDate dataDePagamento) {
 		this.dataDePagamento = dataDePagamento;
 	}
-	public TipoLancamento getTipoLancamento() {
-		return tipoLancamento;
+	public TipoLancamento getTipo() {
+		return tipo;
 	}
-	public void setTipoLancamento(TipoLancamento tipoLancamento) {
-		this.tipoLancamento = tipoLancamento;
+	public void setTipo(TipoLancamento tipo) {
+		this.tipo = tipo;
+	}
+	public StatusLancamento getStatus() {
+		return status;
+	}
+	public void setStatus(StatusLancamento status) {
+		this.status = status;
 	}
 }

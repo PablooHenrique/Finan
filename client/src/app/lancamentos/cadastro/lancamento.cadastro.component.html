@@ -1,0 +1,123 @@
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                        <button [routerLink]="'/lancamentos'" class="btn btn-secondary">Voltar</button>
+                        <button (click)="habilitarEdicao()" *ngIf="!insertProcess" class="btn btn-warning">Editar</button>
+                    </div>
+
+                    <div *ngIf="!insertProcess">
+                        <div class="header">
+                            <h4 class="title">Detalhes do Lançamento</h4>
+                            <p class="category">Detalhes</p>
+                        </div>
+    
+                        <div class="content">
+                            <div class="row">
+                                <div style="width: 50%; background-color: white; margin: auto">
+                                    <div class="row" style="text-align: center">
+                                        <h4>{{lancamento.id}} - {{lancamento.descricao}}</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4" style="text-align: right; background-color: white" >Tipo : {{lancamento.tipo}}</div>
+                                        <div class="col-md-4" style="text-align: center">Valor : R$ {{lancamento.valor}}</div>
+                                        <div class="col-md-4" style="background-color: white">Mes : {{lancamento.mesReferencia}}</div>
+                                    </div>
+                                </div>
+                                <div style="height: 40px; width: 100%">
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div *ngIf="insertProcess">
+                        <div class="header">
+                            <h4 class="title">Cadastro Lançamento</h4>
+                            <p class="category">Novo Registro</p>
+                        </div>
+                            
+                        <div class="content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Id: </label>
+                                            <input 
+                                                name="id"
+                                                disabled type="text" 
+                                                class="form-control border-input"
+                                                placeholder="Id"
+                                                [(ngModel)] = "lancamento.id">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Descrição: </label>
+                                            <input  
+                                                name="nome"
+                                                type="text" 
+                                                class="form-control border-input" 
+                                                placeholder="Descrição"
+                                                [(ngModel)] = "lancamento.descricao">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+        
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tipo : </label>
+                                            <select name="tipo" class="form-control border-input" [(ngModel)] = "lancamento.tipo">
+                                                <option value="DEBITO">Débito</option>
+                                                <option value="CREDITO">Crédito</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> Valor : </label>
+                                            <input 
+                                                name="valor" 
+                                                type="number" 
+                                                class="form-control border-input" 
+                                                placeholder="Valor"
+                                                [(ngModel)] = "lancamento.valor">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Mês Referência : </label>
+                                            <input 
+                                                name="mes_referencia" 
+                                                type="text" 
+                                                class="form-control border-input" 
+                                                placeholder="Mês Referência"
+                                                [(ngModel)] = "lancamento.mesReferencia">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                            </form>
+                        </div>
+                        <div class="content">
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col-md-5"></div>
+                                <button (click)="salvar()" class="btn btn-primary">Salvar</button>
+                                <button [routerLink]="'/lancamentos'" class="btn btn-danger">Cancelar</button> 
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>

@@ -11,7 +11,8 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
     { path: 'dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
-    { path: 'lancamentos', title: 'Lancamentos',  icon:'ti-view-list-alt', class: '' }
+    { path: 'lancamentos', title: 'Lancamentos',  icon:'ti-view-list-alt', class: '' },
+    { path: 'analise-mensal', title: 'Analise Mensal',  icon:'ti-view-list-alt', class: '' }
 ];
 
 @Component({
