@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Pesquisa de Lançamentos</h4>
+                    <p class="category">Registros encontrados</p>
+                </div>
+
+                <div class="content table-responsive table-full-width">
+                    <div class="conteiner-pesquisa-buttons" style="margin-left: 20px;margin-top: 30px">
+                        <div class="btn-group">
+                            <button class="btn">Todos</button>
+                            <button class="btn btn-fill">Debitos</button>
+                            <button class="btn btn-fill">Creditos</button>
+                        </div>
+                    </div>
+                    <div class="form">
+                        <div class="row">
+                            <div class="col-md-10" style="margin-left: 20px; margin-top: 30px;">
+                                <div class="form-group">
+                                    <label>Pesquisar</label>
+                                    <input type="text" class="form-control border-input" placeholder="Digite codigo, descrição">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group" style="margin-top: 55px !important">
+                                    <a [routerLink]="'cadastro-lancamento'" class="btn btn-primary">
+                                        Novo Registro
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-responsive" style="margin-top: 20px">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let cell of tableHeader">{{ cell }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let lancamento of lancamentos">
+                                <td style="width: 5%">{{lancamento.id}}</td>    
+                                <td style="width: 55%">{{lancamento.descricao}}</td>    
+                                <td style="width: 15%">{{lancamento.mesReferencia}}</td>      
+                                <td style="width: 10%">{{lancamento.valor}}</td>        
+                                <td style="width: 10%">{{lancamento.tipo}}</td>        
+                                <td style="width: 10%">{{lancamento.status}}</td>        
+                                <td style="width: 2.5%"><button (click)="exibirDetalhes(lancamento.id)" class="btn btn-primary btn-sm ti-marker"></button></td>
+                                <td style="width: 2.5%"><button (click)="deletar(lancamento.id)" class="btn btn-danger btn-sm ti-close"></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

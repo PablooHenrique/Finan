@@ -2,6 +2,8 @@ package br.com.fornow.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,12 @@ public class LancamentoController {
 			return new ResponseEntity<List<Lancamento>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Lancamento>>(lancamentos, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> pesquisaLancamentoPorId(@PathVariable("id") long id){
+		Lancamento lancamento = new LancamentoService().pesquisarPorId(id);
+		return new ResponseEntity<Lancamento>(lancamento, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

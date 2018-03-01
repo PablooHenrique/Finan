@@ -57,6 +57,11 @@ public class LancamentoRepository {
 		session.close();
 		return find;
 	}
+
+	public Lancamento pesquisarPorId(long id) {
+		Lancamento lancamento = procurarLancamentoPorId(id);
+		return lancamento;
+	}
 }
 
 
