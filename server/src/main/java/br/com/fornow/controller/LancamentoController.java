@@ -2,8 +2,6 @@ package br.com.fornow.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fornow.model.Lancamento;
+import br.com.fornow.model.StatusLancamento;
 import br.com.fornow.service.LancamentoService;
 
 @RestController
@@ -36,6 +35,15 @@ public class LancamentoController {
 		return new ResponseEntity<Lancamento>(lancamento, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/{mesReferencia}/{status}")
+	public ResponseEntity<?> pesquisarLancamentoPorStatusEMesReferencia(
+							  @PathVariable("mesReferencia") int mesReferencia
+							, @PathVariable("status") StatusLancamento status){
+		
+		List<Lancamento> lancamentos = new LancamentoService().pesquisarPorStatusEMesReferencia(mesReferencia, status);
+		return new ResponseEntity<List<Lancamento>>(lancamentos, HttpStatus.OK);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> salvaLancamento(@RequestBody Lancamento lancamento, UriComponentsBuilder ucBuilder){
 		new LancamentoService().salvarLancamento(lancamento);
@@ -50,11 +58,25 @@ public class LancamentoController {
 		return new ResponseEntity<Lancamento>(lancamento, HttpStatus.OK);
 	}
 	
-	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletaLancamento(@PathVariable("id") long id){
 		new LancamentoService().deletarLancamento(id);
 		return new ResponseEntity<Lancamento>(HttpStatus.NO_CONTENT);
+	}
+	
+	
+	@RequestMapping(value="/efetivarPagamento/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> efetivarPagamento(@PathVariable("id") long id){
+		Lancamento lancamento = new LancamentoService().efetivarPagamento(id);
+		return new ResponseEntity<Lancamento>(lancamento, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/pesquisarTotalLancamentoPorStatusEMesReferencia/{status}/{mesReferencia}")
+	public ResponseEntity<Double> pesquisarTotalDeLancamentoPorStatusEMesReferencia(
+			  				@PathVariable("mesReferencia") int mesReferencia
+			  			  , @PathVariable("status") StatusLancamento status){
+		Double total = new LancamentoService().pesquisarTotalPorStatusEMesReferencia(mesReferencia, status);
+		return new ResponseEntity<Double>(total, HttpStatus.OK);
 	}
 }
 

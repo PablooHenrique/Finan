@@ -1,8 +1,10 @@
 package br.com.fornow.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.fornow.model.Lancamento;
+import br.com.fornow.model.StatusLancamento;
 import br.com.fornow.repository.LancamentoRepository;
 
 public class LancamentoService {
@@ -39,5 +41,30 @@ public class LancamentoService {
 		Lancamento lancamento = new LancamentoRepository().pesquisarPorId(id);
 		System.out.println("Pesquisou por id");
 		return lancamento;
+	}
+
+	public List<Lancamento> pesquisarPorStatusEMesReferencia(int mesReferencia, StatusLancamento status) {
+		List<Lancamento> lancamentos = new LancamentoRepository().pesquisarLancamentosPorStatusEPorMes(status, mesReferencia);
+		return lancamentos;
+	}
+
+	public Lancamento efetivarPagamento(long id) {
+		LancamentoRepository repository = new LancamentoRepository();
+		Lancamento lancamento = repository.pesquisarPorId(id);
+		lancamento.setDataDePagamento(LocalDate.now());
+		lancamento.setStatus(StatusLancamento.PAGO);
+		repository.atualizarLancamento(lancamento);
+		return lancamento;
+	}
+
+	public Double pesquisarTotalPorStatusEMesReferencia(int mesReferencia, StatusLancamento status) {
+		List<Lancamento> lancamentos = pesquisarPorStatusEMesReferencia(mesReferencia, status);
+		Double total = 0.0;
+		
+		for (Lancamento lancamento : lancamentos) {
+			total += lancamento.getValor();
+		}
+		
+		return total;
 	}
 }

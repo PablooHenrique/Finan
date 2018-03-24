@@ -20,6 +20,7 @@ import { AnaliseMensalComponent } from './analise-mensal/analise.mensal.componen
 
 
 import { LancamentoService } from './lancamentos/lancamento.service';
+import { ToastService } from './shared/toast/toast.service';
 
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -48,7 +49,7 @@ import 'rxjs/add/operator/map';
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
 
   ],
-  providers: [LancamentoService],
+  providers: [LancamentoService, ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,6 +19,26 @@ export class LancamentoService{
         return this._http.get(url)
     }
 
+    public pesquisarLancamentosEmAbertoPorMesReferencia(mesReferencia){
+        let url = this.baseUrl + "/"+mesReferencia+"/EM_ABERTO";
+        return this._http.get(url);
+    }
+
+    public pesquisarLancamentoPagosMesReferencia(mesReferencia){
+        let url = this.baseUrl + "/"+mesReferencia+"/PAGO";
+        return this._http.get(url);
+    }
+
+    public pesquisarTotalLancamentoPagosPorMesReferencia(mesReferencia){
+        let url = this.baseUrl + "/pesquisarTotalLancamentoPorStatusEMesReferencia"+"/PAGO/"+mesReferencia;
+        return this._http.get(url);
+    }
+
+    public pesquisarTotalLancamentoEmAbertoPorMesReferencia(mesReferencia){
+        let url = this.baseUrl + "/pesquisarTotalLancamentoPorStatusEMesReferencia"+"/EM_ABERTO/"+mesReferencia;
+        return this._http.get(url);
+    }
+
     public salvar(lancamento : LancamentoDomain){
         let headers = new Headers();
         headers.append('Content-Type', 'application/json')
@@ -41,5 +61,13 @@ export class LancamentoService{
 
         let url = this.baseUrl+"/"+id;
         return this._http.delete(url, {headers});
+    }
+
+    public efetivarPagamento(id){
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json')
+
+        let url = this.baseUrl+"/efetivarPagamento/"+id;
+        return this._http.put(url, headers);
     }
 }
