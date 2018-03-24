@@ -1,4 +1,4 @@
-package br.com.fornow.model.enums;
+package br.com.fornow.lancamentos.enums;
 
 public enum TipoLancamento {
 	CREDITO, DEBITO;
