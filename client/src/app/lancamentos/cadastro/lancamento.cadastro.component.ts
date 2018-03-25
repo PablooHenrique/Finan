@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LancamentoDomain } from '../lancamento.domain';
 import { LancamentoService } from '../lancamento.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from '../../shared/toast/toast.service';
 
+declare var $:any;
 
 @Component({
     templateUrl: 'lancamento.cadastro.component.html',
@@ -17,7 +19,8 @@ export class CadastroLancamentoComponent implements OnInit{
 
     constructor(private _lancamentoService : LancamentoService
               , private _activatedRouter : ActivatedRoute
-              , private _router : Router){
+              , private _router : Router
+              , private _toast : ToastService){
         this.lancamento = new LancamentoDomain();
         
     }
@@ -40,10 +43,13 @@ export class CadastroLancamentoComponent implements OnInit{
         if (this.lancamento.id > 0) {
             this.editar();
         } else {
+            this.lancamento.status = "EM_ABERTO";
             this._lancamentoService.salvar(this.lancamento).subscribe(()=>{
-                console.log("Sucess")
+                this.lancamento = new LancamentoDomain();
+                this._toast.showNotification("top", "center", $, 2, "Lancamento", "Cadastrado com sucesso" );
+                this._router.navigate(['lancamentos']);
             }, error =>{
-                console.log(error)
+                this._toast.showNotification("top", "center", $, 4, "Lancamento", "Cadastrado com sucesso" );
             }) ;
         }
     }

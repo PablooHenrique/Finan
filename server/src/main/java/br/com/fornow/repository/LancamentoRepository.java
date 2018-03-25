@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import br.com.fornow.model.Lancamento;
+import br.com.fornow.model.StatusLancamento;
 
 public class LancamentoRepository {
 	
@@ -61,6 +62,30 @@ public class LancamentoRepository {
 	public Lancamento pesquisarPorId(long id) {
 		Lancamento lancamento = procurarLancamentoPorId(id);
 		return lancamento;
+	}
+	
+	public List<Lancamento> pesquisarLancamentoEmAbertoPorMes(int mesReferencia){
+		return pesquisarLancamentosPorStatusEPorMes(StatusLancamento.EM_ABERTO, mesReferencia);
+	}
+	
+	public List<Lancamento> pesquisarLancamentosPagosPorMes(int mesReferencia){
+		return pesquisarLancamentosPorStatusEPorMes(StatusLancamento.PAGO, mesReferencia);
+	}
+	
+	public List<Lancamento> pesquisarLancamentosPorStatusEPorMes(StatusLancamento status, int mesReferencia){
+		SessionFactory sessionFactory = Repository.getInstance().getSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		StringBuilder jpql = new StringBuilder();
+		jpql.append("Select a from Lancamento a where a.status = :status and a.mesReferencia = :mesReferencia");
+		Query<Lancamento> createQuery = session.createQuery(jpql.toString(), Lancamento.class);
+		
+		createQuery.setParameter("status", status);
+		createQuery.setParameter("mesReferencia", mesReferencia);
+		
+		List<Lancamento> resultList = createQuery.getResultList();
+		session.close();
+		return resultList;
 	}
 }
 
