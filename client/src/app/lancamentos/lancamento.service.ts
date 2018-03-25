@@ -19,6 +19,41 @@ export class LancamentoService{
         return this._http.get(url)
     }
 
+    public pesquisarTotalCreditoPrevistosPorMesReferencia(mesReferencia){
+        let tipo = "CREDITO";
+        return this.pesquisarTotalPorTipoEMesReferencia(tipo, mesReferencia);
+    }
+
+    public pesquisarTotalDebitosPrevistosPorMesReferencia(mesReferencia){
+        let tipo = "DEBITO";
+        return this.pesquisarTotalPorTipoEMesReferencia(tipo, mesReferencia);
+    }
+
+    public pesquisarTotalPorTipoEMesReferencia(tipo, mesReferencia){
+        let url = this.baseUrl + "/pesquisaTotalPorTipoEMesReferencia/"+tipo+"/"+mesReferencia;
+        return this._http.get(url);
+    }
+
+    public pesquisarDebitosPorMesReferencia(mesReferencia){
+        let tipo = "DEBITO";
+        return this.pesquisarPorTipoEMesReferencia(tipo, mesReferencia);
+    }
+
+    public pesquisarCreditosPorMesReferencia(mesReferencia){
+        let tipo = "CREDITO";
+        return this.pesquisarPorTipoEMesReferencia(tipo, mesReferencia);
+    }
+
+    private pesquisarPorTipoEMesReferencia(tipo, mesReferencia){
+        let url = this.baseUrl +"/pesquisaPorTipoEMesReferencia/"+tipo+"/"+mesReferencia
+        return this._http.get(url);
+    }
+
+    public pesquisarLancamentosPorMesReferencia(mesReferencia){
+        let url = this.baseUrl +"/pesquisaPorMesReferencia/"+mesReferencia;
+        return this._http.get(url);
+    }
+
     public pesquisarLancamentosEmAbertoPorMesReferencia(mesReferencia){
         let url = this.baseUrl + "/"+mesReferencia+"/EM_ABERTO";
         return this._http.get(url);
@@ -30,12 +65,12 @@ export class LancamentoService{
     }
 
     public pesquisarTotalLancamentoPagosPorMesReferencia(mesReferencia){
-        let url = this.baseUrl + "/pesquisarTotalLancamentoPorStatusEMesReferencia"+"/PAGO/"+mesReferencia;
+        let url = this.baseUrl + "/pesquisaTotalLancamentosPrevistoPorStatusEMesReferencia"+"/PAGO/"+mesReferencia;
         return this._http.get(url);
     }
 
     public pesquisarTotalLancamentoEmAbertoPorMesReferencia(mesReferencia){
-        let url = this.baseUrl + "/pesquisarTotalLancamentoPorStatusEMesReferencia"+"/EM_ABERTO/"+mesReferencia;
+        let url = this.baseUrl + "/pesquisaTotalLancamentosPrevistoPorStatusEMesReferencia"+"/EM_ABERTO/"+mesReferencia;
         return this._http.get(url);
     }
 
@@ -51,7 +86,7 @@ export class LancamentoService{
         let headers = new Headers();
         headers.append('Content-Type', 'application/json')
 
-        let url = this.baseUrl+"/"+lancamento.id;
+        let url = this.baseUrl;
         return this._http.put(url, JSON.stringify(lancamento), {headers});
     }
 
@@ -67,7 +102,7 @@ export class LancamentoService{
         let headers = new Headers();
         headers.append('Content-Type', 'application/json')
 
-        let url = this.baseUrl+"/efetivarPagamento/"+id;
+        let url = this.baseUrl+"/efetivaPagamento/"+id;
         return this._http.put(url, headers);
     }
 }

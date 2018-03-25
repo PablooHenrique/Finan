@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fornow.lancamentos.enums.StatusLancamento;
+import br.com.fornow.lancamentos.enums.TipoLancamento;
 
 @Service
 public class LancamentoService {
@@ -80,6 +81,25 @@ public class LancamentoService {
 		BigDecimal total = new BigDecimal("0");
 		for (LancamentoVo lancamentoVo : lancamentos) {
 			total = total.add(lancamentoVo.getValorEfetuado());
+		}
+		return total;
+	}
+
+	public List<LancamentoVo> pesquisarPorMesReferencia(int mesReferencia) {
+		List<LancamentoVo> lancamentos = this.repository.findByMesReferencia(mesReferencia);
+		return lancamentos;
+	}
+
+	public List<LancamentoVo> pesquisarPorTipoEMesReferencia(TipoLancamento tipo, int mesReferencia) {
+		List<LancamentoVo> lancamentos = this.repository.findByTipoAndMesReferencia(tipo, mesReferencia);
+		return lancamentos;
+	}
+
+	public BigDecimal pesquisarTotalPorTipoEMesReferencia(TipoLancamento tipo, int mesReferencia) {
+		List<LancamentoVo> lancamentos = this.repository.findByTipoAndMesReferencia(tipo, mesReferencia);
+		BigDecimal total = new BigDecimal("0");
+		for (LancamentoVo lancamento : lancamentos) {
+			total = total.add(lancamento.getValorPrevisto());
 		}
 		return total;
 	}

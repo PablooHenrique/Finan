@@ -19,7 +19,16 @@ export class AnaliseMensalComponent {
     public totalLancamentosPagos : number = 0;
     public totalLancamentoEmAberto : number = 0;
 
+    public totalPrevisaoEntradas : number = 0;
+    public totalPrevisaoSaida : number = 0;           
+    public saldoPrevisao : number = 0;
+
     constructor(private _lancamentosService : LancamentoService, private _toast : ToastService ){
+        let data = new Date();
+        this.mesReferencia = data.getMonth() + 1;
+        this.analisar();
+        this.analisarTotalPrevisao();
+
         this.tableHeader = ["Id", "Descrição", "Mês Referência", "Valor", "Tipo", "Status", ""]
     }
 
@@ -44,7 +53,6 @@ export class AnaliseMensalComponent {
     }
 
     efetivarPagamento(lancamento){
-        console.log("efetiarPagamento");
         this._lancamentosService.efetivarPagamento(lancamento.id).subscribe(() =>{
             this.analisar();
             this._toast.showNotification("top", "center", $, 2, "Pagamento", "Efetivado com sucesso" );
@@ -62,6 +70,21 @@ export class AnaliseMensalComponent {
             map(response => response.json()).
             subscribe(response => {
                 this.totalLancamentosPagos = response;
+            });
+    }
+
+    analisarTotalPrevisao(){
+        this._lancamentosService.pesquisarTotalDebitosPrevistosPorMesReferencia(this.mesReferencia)
+            .map(response => response.json())
+            .subscribe(response => {
+                this.totalPrevisaoSaida = response;
+                console.log(response);
+                this._lancamentosService.pesquisarTotalCreditoPrevistosPorMesReferencia(this.mesReferencia)
+                    .map(response => response.json())
+                    .subscribe(response =>{ 
+                        this.totalPrevisaoEntradas = response
+                        this.saldoPrevisao = this.totalPrevisaoEntradas - this.totalPrevisaoSaida;
+                    });
             });
     }
 }
