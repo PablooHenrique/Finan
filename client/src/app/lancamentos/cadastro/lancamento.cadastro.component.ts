@@ -55,6 +55,7 @@ export class CadastroLancamentoComponent implements OnInit{
     }
 
     editar(){
+        console.log(this.lancamento)
         this._lancamentoService.atualizar(this.lancamento)
             .subscribe(()=>{
                 this.insertProcess = false;

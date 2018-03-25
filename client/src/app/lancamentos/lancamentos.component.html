@@ -8,11 +8,36 @@
                 </div>
 
                 <div class="content table-responsive table-full-width">
-                    <div class="conteiner-pesquisa-buttons" style="margin-left: 20px;margin-top: 30px">
-                        <div class="btn-group">
-                            <button class="btn">Todos</button>
-                            <button class="btn btn-fill">Debitos</button>
-                            <button class="btn btn-fill">Creditos</button>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group" style="margin-left: 20px; margin-top: 30px;">
+                                <label>Mês: </label>
+                                <input 
+                                name="id"
+                                type="text" 
+                                class="form-control border-input"
+                                placeholder="Mês Referencia"
+                                [(ngModel)]="mesReferencia"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button class="btn btn-primary"
+                                style="margin-top: 56px;" 
+                                (click)="consultarLancamentos()">Pesquisar</button>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="conteiner-pesquisa-buttons" style="margin-left: 20px; margin-top: 30px; margin-right: 0px;">
+                                <div class="btn-group">
+                                    <button (click)="consultarLancamentos()" class="btn">Todos</button>
+                                    <button (click)="consultarDebitos()" class="btn btn-fill">Debitos</button>
+                                    <button (click)="consultarCreditos()" class="btn btn-fill">Creditos</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form">
@@ -43,9 +68,9 @@
                         <tbody>
                             <tr *ngFor="let lancamento of lancamentos">
                                 <td style="width: 5%">{{lancamento.id}}</td>    
-                                <td style="width: 55%">{{lancamento.descricao}}</td>    
+                                <td style="width: 55%">{{lancamento.titulo}}</td>    
                                 <td style="width: 15%">{{lancamento.mesReferencia}}</td>      
-                                <td style="width: 10%">{{lancamento.valor}}</td>        
+                                <td style="width: 10%">{{lancamento.valorPrevisto}}</td>        
                                 <td style="width: 10%">{{lancamento.tipo}}</td>        
                                 <td style="width: 10%">{{lancamento.status}}</td>        
                                 <td style="width: 2.5%"><button (click)="exibirDetalhes(lancamento.id)" class="btn btn-primary btn-sm ti-marker"></button></td>

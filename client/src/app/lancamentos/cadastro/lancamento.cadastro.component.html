@@ -17,11 +17,11 @@
                             <div class="row">
                                 <div style="width: 50%; background-color: white; margin: auto">
                                     <div class="row" style="text-align: center">
-                                        <h4>{{lancamento.id}} - {{lancamento.descricao}}</h4>
+                                        <h4>{{lancamento.id}} - {{lancamento.titulo}}</h4>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4" style="text-align: right; background-color: white" >Tipo : {{lancamento.tipo}}</div>
-                                        <div class="col-md-4" style="text-align: center">Valor : R$ {{lancamento.valor}}</div>
+                                        <div class="col-md-4" style="text-align: center">Valor : R$ {{lancamento.valorPrevisto}}</div>
                                         <div class="col-md-4" style="background-color: white">Mes : {{lancamento.mesReferencia}}</div>
                                     </div>
                                 </div>
@@ -57,16 +57,28 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Descrição: </label>
+                                            <label>Titulo: </label>
                                             <input  
                                                 name="nome"
                                                 type="text" 
                                                 class="form-control border-input" 
                                                 placeholder="Descrição"
-                                                [(ngModel)] = "lancamento.descricao">
+                                                [(ngModel)] = "lancamento.titulo">
                                         </div>
                                     </div>
-                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Detalhes: </label>
+                                            <textarea class="form-control" 
+                                                placeholder="Descrição" 
+                                                rows="3"
+                                                name="detalhes"
+                                                [(ngModel)] = "lancamento.detalhes"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
         
                                 <div class="row">
@@ -81,13 +93,13 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label> Valor : </label>
+                                            <label> Valor Previsto: </label>
                                             <input 
                                                 name="valor" 
                                                 type="number" 
                                                 class="form-control border-input" 
                                                 placeholder="Valor"
-                                                [(ngModel)] = "lancamento.valor">
+                                                [(ngModel)] = "lancamento.valorPrevisto">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -113,10 +125,7 @@
                                 <button [routerLink]="'/lancamentos'" class="btn btn-danger">Cancelar</button> 
                             </div>
                         </div>
-
                     </div>
-
-                    
                 </div>
             </div>
         </div>

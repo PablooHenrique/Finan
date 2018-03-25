@@ -30,8 +30,8 @@
                                     </div>
                                     <div class="col-md-7" style="margin-top: 27px !important; text-align: center">
                                         <div class="row">
-                                            <h5>Entradas: R$ 500,00 -X- Previsão Saida : R$2000,00 </h5> 
-                                            <h5>Total : R$ -700,00</h5>
+                                            <h5>Entradas: R$ {{totalPrevisaoEntradas}} X Previsão Saida : R$ {{totalPrevisaoSaida}} </h5> 
+                                            <h5>Total : R$ {{saldoPrevisao}}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -56,9 +56,9 @@
                                         <tbody>
                                             <tr *ngFor="let lancamento of lancamentosEmAberto" >
                                                 <td style="width: 5%">{{lancamento.id}}</td>    
-                                                <td style="width: 55%">{{lancamento.descricao}}</td>    
+                                                <td style="width: 55%">{{lancamento.titulo}}</td>    
                                                 <td style="width: 15%">{{lancamento.mesReferencia}}</td>      
-                                                <td style="width: 10%">{{lancamento.valor}}</td>        
+                                                <td style="width: 10%">{{lancamento.valorPrevisto}}</td>        
                                                 <td style="width: 10%">{{lancamento.tipo}}</td>        
                                                 <td style="width: 10%">{{lancamento.status}}</td>        
                                                 <td style="width: 2.5%">
@@ -88,9 +88,9 @@
                                     <tbody>
                                         <tr *ngFor="let lancamento of lancamentosPagos" >
                                             <td style="width: 5%">{{lancamento.id}}</td>    
-                                            <td style="width: 55%">{{lancamento.descricao}}</td>    
+                                            <td style="width: 55%">{{lancamento.titulo}}</td>    
                                             <td style="width: 15%">{{lancamento.mesReferencia}}</td>      
-                                            <td style="width: 10%">{{lancamento.valor}}</td>        
+                                            <td style="width: 10%">{{lancamento.valorPrevisto}}</td>        
                                             <td style="width: 10%">{{lancamento.tipo}}</td>        
                                             <td style="width: 10%">{{lancamento.status}}</td>        
                                         </tr>
